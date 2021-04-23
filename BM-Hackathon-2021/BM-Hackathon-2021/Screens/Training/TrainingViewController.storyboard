@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpK-Ow-FTZ" userLabel="CameraOutputContainer">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpK-Ow-FTZ" userLabel="CameraContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -30,7 +30,7 @@
                         <constraints>
                             <constraint firstItem="rpK-Ow-FTZ" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" id="2py-be-QxP"/>
                             <constraint firstItem="dXm-fh-qa9" firstAttribute="width" secondItem="rpK-Ow-FTZ" secondAttribute="width" multiplier="0.2" id="CfQ-Dd-rvL"/>
-                            <constraint firstItem="uF2-JP-yju" firstAttribute="bottom" secondItem="rpK-Ow-FTZ" secondAttribute="bottom" id="Doc-mc-bJZ"/>
+                            <constraint firstAttribute="bottom" secondItem="rpK-Ow-FTZ" secondAttribute="bottom" id="Doc-mc-bJZ"/>
                             <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="rpK-Ow-FTZ" secondAttribute="trailing" id="bDE-GK-BL1"/>
                             <constraint firstItem="rpK-Ow-FTZ" firstAttribute="leading" secondItem="uF2-JP-yju" secondAttribute="leading" id="d7B-w5-Ppn"/>
                             <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="dXm-fh-qa9" secondAttribute="trailing" constant="20" id="kJR-4Z-Rdp">
@@ -55,6 +55,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="cameraContainer" destination="rpK-Ow-FTZ" id="Xp9-qM-88Y"/>
                         <outlet property="exerciseContainerMaxRightConstraint" destination="kJR-4Z-Rdp" id="KED-DF-EdR"/>
                         <outlet property="exerciseContainerMaxTopConstraint" destination="q57-hX-jYp" id="LWN-r4-LfH"/>
                         <outlet property="exerciseContainerMinHeightConstraint" destination="mxD-U0-vJ6" id="lNJ-fR-gQe"/>

@@ -8,9 +8,14 @@
 import UIKit
 
 extension UIView {
-    func embed(to superview: UIView, inset: UIEdgeInsets = .zero, safeArea shouldRespectSafeArea: Bool = false) {
+    func embed(to superview: UIView, position: Int? = nil, inset: UIEdgeInsets = .zero, safeArea shouldRespectSafeArea: Bool = false) {
         self.translatesAutoresizingMaskIntoConstraints = false
-        superview.addSubview(self)
+        if let position = position {
+            superview.insertSubview(self, at: position)
+        } else {
+            superview.addSubview(self)
+        }
+        
         
         if shouldRespectSafeArea {
             NSLayoutConstraint.activate([

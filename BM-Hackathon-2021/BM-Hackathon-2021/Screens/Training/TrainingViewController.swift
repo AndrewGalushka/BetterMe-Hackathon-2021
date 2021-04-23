@@ -22,12 +22,14 @@ final class TrainingViewController: UIViewController {
         )
     }
     
+    @IBOutlet var cameraContainer: UIView!
     @IBOutlet var exerciseVideoContainer: UIView!
     @IBOutlet var exerciseContainerMinWidthConstraint: NSLayoutConstraint!
     @IBOutlet var exerciseContainerMinHeightConstraint: NSLayoutConstraint!
     @IBOutlet var exerciseContainerMaxRightConstraint: NSLayoutConstraint!
     @IBOutlet var exerciseContainerMaxTopConstraint: NSLayoutConstraint!
     
+    private lazy var cameraViewController = CaptureViewFactory.makeDefault
     private var props = Props.initial
     private var oldProps = Props.initial
     
@@ -93,6 +95,9 @@ final class TrainingViewController: UIViewController {
     }
     
     func setup() {
+        cameraViewController.attach(to: self, in: cameraContainer)
+        cameraViewController.view.isUserInteractionEnabled = false
+        
         exerciseVideoContainer.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(onExerciseVideoTap))
         )
