@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3H5-UM-BBB">
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Training View Controller-->
+        <scene sceneID="xZ8-Tw-aiO">
+            <objects>
+                <viewController storyboardIdentifier="TrainingViewController" id="3H5-UM-BBB" customClass="TrainingViewController" customModule="BM_Hackathon_2021" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tUv-bb-lmv">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpK-Ow-FTZ" userLabel="CameraOutputContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXm-fh-qa9">
+                                <rect key="frame" x="40" y="1053" width="205" height="273"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uF2-JP-yju"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rpK-Ow-FTZ" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" id="2py-be-QxP"/>
+                            <constraint firstItem="dXm-fh-qa9" firstAttribute="width" secondItem="rpK-Ow-FTZ" secondAttribute="width" multiplier="0.2" id="CfQ-Dd-rvL"/>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="bottom" secondItem="rpK-Ow-FTZ" secondAttribute="bottom" id="Doc-mc-bJZ"/>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="rpK-Ow-FTZ" secondAttribute="trailing" id="bDE-GK-BL1"/>
+                            <constraint firstItem="rpK-Ow-FTZ" firstAttribute="leading" secondItem="uF2-JP-yju" secondAttribute="leading" id="d7B-w5-Ppn"/>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="dXm-fh-qa9" secondAttribute="trailing" constant="20" id="kJR-4Z-Rdp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="bottom" secondItem="dXm-fh-qa9" secondAttribute="bottom" constant="20" id="mgh-wu-R19">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="dXm-fh-qa9" firstAttribute="height" secondItem="rpK-Ow-FTZ" secondAttribute="height" multiplier="0.2" id="mxD-U0-vJ6"/>
+                            <constraint firstItem="dXm-fh-qa9" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" constant="20" id="q57-hX-jYp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="dXm-fh-qa9" firstAttribute="leading" secondItem="uF2-JP-yju" secondAttribute="leading" constant="20" id="rbi-4I-FfU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="kJR-4Z-Rdp"/>
+                                <exclude reference="q57-hX-jYp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="exerciseContainerMaxRightConstraint" destination="kJR-4Z-Rdp" id="KED-DF-EdR"/>
+                        <outlet property="exerciseContainerMaxTopConstraint" destination="q57-hX-jYp" id="LWN-r4-LfH"/>
+                        <outlet property="exerciseContainerMinHeightConstraint" destination="mxD-U0-vJ6" id="lNJ-fR-gQe"/>
+                        <outlet property="exerciseContainerMinWidthConstraint" destination="CfQ-Dd-rvL" id="bjH-G0-yJk"/>
+                        <outlet property="exerciseVideoContainer" destination="dXm-fh-qa9" id="CRW-4m-ALm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7wy-kX-yoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-172" y="61.619190404797607"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

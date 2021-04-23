@@ -9,7 +9,9 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    private lazy var store = AppStore(state: AppState(), reducer: reduce, middlewares: [])
+    private lazy var store = AppStore(state: .initial,
+                                      reducer: reduce,
+                                      middlewares: [])
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         StoreLocator.populate(with: store)

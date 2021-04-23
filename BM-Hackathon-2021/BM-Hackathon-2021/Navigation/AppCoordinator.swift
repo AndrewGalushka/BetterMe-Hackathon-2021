@@ -23,7 +23,7 @@ class AppCoordinator {
 
 private extension AppCoordinator {
     func makeInitialScreen() -> UIViewController {
-        let vc = CaptureViewController()
+        let vc = TrainingScreenFactory().makeDefault()
         return vc
     }
 }
