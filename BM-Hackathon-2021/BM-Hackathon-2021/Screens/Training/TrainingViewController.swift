@@ -21,6 +21,8 @@ final class TrainingViewController: UIViewController {
             onDestroy: .nop
         )
     }
+    private var props = Props.initial
+    private var oldProps = Props.initial
     
     @IBOutlet var cameraContainer: UIView!
     @IBOutlet var exerciseVideoContainer: UIView!
@@ -30,8 +32,7 @@ final class TrainingViewController: UIViewController {
     @IBOutlet var exerciseContainerMaxTopConstraint: NSLayoutConstraint!
     
     private lazy var cameraViewController = CaptureViewFactory.makeDefault
-    private var props = Props.initial
-    private var oldProps = Props.initial
+    private lazy var exercisePlayerViewController = ExerciseVideoPlayerScreenFactory().makeDefault()
     
     deinit {
         props.onDestroy.perform()
@@ -102,6 +103,9 @@ final class TrainingViewController: UIViewController {
             UITapGestureRecognizer(target: self, action: #selector(onExerciseVideoTap))
         )
         
+        exercisePlayerViewController.attach(to: self, in: exerciseVideoContainer)
+        exerciseVideoContainer.clipsToBounds = true
+        exerciseVideoContainer.layer.cornerRadius = 18
         updateExerciseContainer(force: true, animated: false)
     }
     

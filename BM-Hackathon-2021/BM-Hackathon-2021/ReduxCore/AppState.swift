@@ -24,10 +24,14 @@ func reduce(_ state: AppState, with action: Action) -> AppState {
 // MARK: - TrainingScreenState
 
 struct TrainingScreenState: Equatable {
-    let exerciseVideoState: ExerciseVideoState
+    var exerciseVideoState: ExerciseVideoState
+    let exerciseVideoURL: URL
     
     static var initial: TrainingScreenState {
-        return TrainingScreenState(exerciseVideoState: .maximised)
+        return TrainingScreenState(
+            exerciseVideoState: .maximised,
+            exerciseVideoURL: ExerciseVideoURLProvider.shared.nextURL()
+        )
     }
     
     enum ExerciseVideoState: Equatable {
@@ -41,9 +45,13 @@ func reduce(_ state: TrainingScreenState, with action: Action) -> TrainingScreen
     case is Actions.TrainingPresenter.ExerciseVideoTap:
         switch state.exerciseVideoState {
         case .minimised:
-            return TrainingScreenState(exerciseVideoState: .maximised)
+            return state | {
+                $0.exerciseVideoState = .maximised
+            }
         case .maximised:
-            return TrainingScreenState(exerciseVideoState: .minimised)
+            return state | {
+                $0.exerciseVideoState = .minimised
+            }
         }
     default:
         return state
