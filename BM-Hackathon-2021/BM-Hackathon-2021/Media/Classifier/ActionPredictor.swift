@@ -31,21 +31,26 @@ class ActionPredictor {
     }
     
     func configure() {
-        GestureActionClassifier.load { [weak self] (result) in
+        let config = MLModelConfiguration()
+        
+        GestureActionClassifier.load(configuration: config, completionHandler: { [weak self] (result) in
             switch result {
             case .success(let classifier):
                 self?.classifier = classifier
             case .failure(let error):
                 fatalError(error.localizedDescription)
             }
-        }
+        })
     }
     
     func processNext(_ bodyPose: VNHumanBodyPoseObservation?) throws {
+        if posesWindow.count >= predictionWindowFrames {
+            posesWindow.removeFirst()
+        }
+        
         posesWindow.append(bodyPose)
         
-        if posesWindow.count > predictionWindowFrames {
-            posesWindow.removeFirst()
+        if isReadyToMakePrediction {
             let results = try makePrediction()
             output?(results)
         }
@@ -58,7 +63,7 @@ class ActionPredictor {
     private func makePrediction() throws -> Output {
         let poseMultiArray: [MLMultiArray] = try posesWindow.map { person in
             guard let person = person else {
-                return try MLMultiArray(shape: [1,3,18], dataType: .float)
+                return try MLMultiArray(shape: [1, 3, 18], dataType: .double)
             }
             return try person.keypointsMultiArray()
         }
@@ -66,7 +71,6 @@ class ActionPredictor {
         let input = MLMultiArray(concatenating: poseMultiArray, axis: 0, dataType: .float)
         let predictions = try classifier.prediction(poses: input)
         
-        _ = posesWindow.dropFirst()
         print("prediction made")
         
         return predictions.labelProbabilities.sorted(by: { (a,b) in a.key > b.key }).map { "\($0.key): \(($0.value * 100).rounded(toPlaces: 2))%" }.joined(separator: "\n")
