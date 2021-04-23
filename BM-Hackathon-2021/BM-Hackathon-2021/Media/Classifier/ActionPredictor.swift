@@ -9,57 +9,64 @@ import Vision
 import CoreML
 
 class ActionPredictor {
-    let classifier = GestureActionClassifier()
-    let bodyPoseRequest = VNDetectHumanBodyPoseRequest()
+    // MARK: - Public
     
-    var posesWindow: [VNRecognizedPointsObservation?] = []
+    typealias Output = String
+    var output: ((Output) -> Void)?
+    
+    // MARK: - Private
+    
+    private var classifier: GestureActionClassifier!
+    private var posesWindow: [VNRecognizedPointsObservation?] = []
+    
+    /// Prediction window duration, measured in seconds.
+    private let predictionWindowDuration: TimeInterval = 1.5
+    
+    /// Number of frames in one prediction window
+    private let predictionWindowFrames: Int = 45
+    private let framesPerSecond = 30
     
     init() {
-        posesWindow.reserveCapacity(60)
+        posesWindow.reserveCapacity(predictionWindowFrames)
     }
     
-    func processFrame(_ buffer: CMSampleBuffer) throws -> [VNRecognizedPointsObservation] {
-        let extracted = extractPoses(from: buffer)
+    func configure() {
+        GestureActionClassifier.load { [weak self] (result) in
+            switch result {
+            case .success(let classifier):
+                self?.classifier = classifier
+            case .failure(let error):
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func processNext(_ bodyPose: VNHumanBodyPoseObservation?) throws {
+        posesWindow.append(bodyPose)
         
-        posesWindow.append(extracted.first)
-        
-        if posesWindow.count > 60 {
+        if posesWindow.count > predictionWindowFrames {
             posesWindow.removeFirst()
-        }
-        
-        return extracted
-    }
-    
-    func extractPoses(from sampleBuffer: CMSampleBuffer) -> [VNRecognizedPointsObservation] {
-        let handler = VNImageRequestHandler(cmSampleBuffer: sampleBuffer, orientation: .up, options: [:])
-        
-        do {
-            try handler.perform([bodyPoseRequest])
-            return bodyPoseRequest.results ?? []
-        } catch {
-            return []
+            let results = try makePrediction()
+            output?(results)
         }
     }
-    
-    typealias PredictionOutput = String
     
     var isReadyToMakePrediction: Bool {
-        return posesWindow.count >= 60
+        return posesWindow.count >= predictionWindowFrames
     }
     
-    func makePrediction() throws -> PredictionOutput {
-        let poseMultiarray: [MLMultiArray] = try posesWindow.map { person in
+    private func makePrediction() throws -> Output {
+        let poseMultiArray: [MLMultiArray] = try posesWindow.map { person in
             guard let person = person else {
                 return try MLMultiArray(shape: [1,3,18], dataType: .float)
             }
             return try person.keypointsMultiArray()
         }
         
-        let input = MLMultiArray(concatenating: poseMultiarray, axis: 0, dataType: .float)
-        
+        let input = MLMultiArray(concatenating: poseMultiArray, axis: 0, dataType: .float)
         let predictions = try classifier.prediction(poses: input)
         
-        posesWindow.removeAll()
+        _ = posesWindow.dropFirst()
         print("prediction made")
         
         return predictions.labelProbabilities.sorted(by: { (a,b) in a.key > b.key }).map { "\($0.key): \(($0.value * 100).rounded(toPlaces: 2))%" }.joined(separator: "\n")

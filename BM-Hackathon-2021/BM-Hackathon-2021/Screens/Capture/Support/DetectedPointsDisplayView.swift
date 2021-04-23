@@ -31,14 +31,7 @@ class DetectedPointsDisplayView: UIView {
         shapeLayer.frame = self.bounds
     }
     
-    func show(detected: ([VNHumanBodyPoseObservation.JointName : VNRecognizedPoint])) {
-        let convertedPoints = detected.values.map { point -> CGPoint in
-            let uiKitPoint = convertVisionPointsToUIKitCoordinates(point.location)
-            return VNImagePointForNormalizedPoint(uiKitPoint,
-                                                  Int(self.shapeLayer.frame.width),
-                                                  Int(self.shapeLayer.frame.height))
-        }
-        
+    func show(convertedPoints: [CGPoint]) {
         let pointsPath = UIBezierPath()
         
         for point in convertedPoints {

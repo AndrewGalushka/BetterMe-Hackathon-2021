@@ -8,26 +8,23 @@
 import Vision
 
 class BodyDetector: NSObject {
-    var output: ((Result<[VNHumanBodyPoseObservation.JointName : VNRecognizedPoint], Error>) -> Void)?
+    typealias OutputData = Result<VNHumanBodyPoseObservation?, Error>
+    var output: ((OutputData) -> Void)?
     
-    func process(pixelBuffer: CVPixelBuffer) {
+    func process(_ sampleBuffer: CMSampleBuffer) {
         DispatchQueue.global().async {
             do {
                 let request = VNDetectHumanBodyPoseRequest()
-                let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
+                let handler = VNImageRequestHandler(cmSampleBuffer: sampleBuffer)
                 try handler.perform([request])
                 
                 guard let humanBodyPoseObservations = request.results,
                       let firstBodyPoses = humanBodyPoseObservations.first else {
-                    self.output?(.success([:]))
+                    self.output?(.success(nil))
                     return
                 }
                 
-//                let points = try poses.
-//                    .filter { $0.value.confidence > 0.1 }
-//                    .map { CGPoint(x: $0.value.location.x, y: 1 - $0.value.location.y) }
-                
-                self.output?(.success(try firstBodyPoses.recognizedPoints(.all)))
+                self.output?(.success(firstBodyPoses))
             } catch let error {
                 self.output?(.failure(error))
             }
