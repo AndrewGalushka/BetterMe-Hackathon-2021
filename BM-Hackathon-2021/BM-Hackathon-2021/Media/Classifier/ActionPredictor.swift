@@ -71,8 +71,6 @@ class ActionPredictor {
         let input = MLMultiArray(concatenating: poseMultiArray, axis: 0, dataType: .float)
         let predictions = try classifier.prediction(poses: input)
         
-        print("prediction made")
-        
         return predictions.labelProbabilities.sorted(by: { (a,b) in a.key > b.key }).map { "\($0.key): \(($0.value * 100).rounded(toPlaces: 2))%" }.joined(separator: "\n")
     }
 }

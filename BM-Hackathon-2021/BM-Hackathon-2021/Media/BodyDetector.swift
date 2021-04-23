@@ -30,10 +30,4 @@ class BodyDetector: NSObject {
             }
         }
     }
-    
-    private func log(_ message: String) {
-        DispatchQueue.global().async {
-            print(message)
-        }
-    }
 }
