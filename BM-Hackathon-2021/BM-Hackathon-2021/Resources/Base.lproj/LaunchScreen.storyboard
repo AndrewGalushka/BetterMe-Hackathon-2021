@@ -15,31 +15,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="figure.wave.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dji-vG-45m">
-                                <rect key="frame" x="57" y="298.5" width="300" height="299"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_signature_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dji-vG-45m">
+                                <rect key="frame" x="122.5" y="363.5" width="169" height="169"/>
                                 <color key="tintColor" red="1" green="0.65060113399999997" blue="0.17135983420000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="900" constant="300" id="6J8-t0-wg5"/>
                                     <constraint firstAttribute="width" secondItem="dji-vG-45m" secondAttribute="height" multiplier="1:1" id="8wP-0b-Qzs"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="CDR-H7-a6j"/>
+                                    <constraint firstAttribute="width" constant="169" id="XHI-aL-rxo">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="300"/>
+                                    </constraint>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.23921568627450979" green="0.41960784313725491" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dji-vG-45m" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="19f-4c-mW0"/>
                             <constraint firstItem="dji-vG-45m" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PHz-hR-5LU"/>
-                            <constraint firstItem="dji-vG-45m" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.724638" id="kAz-Zi-d5P"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <image name="figure.wave.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="app_signature_icon" width="129" height="169"/>
     </resources>
 </document>
