@@ -23,11 +23,7 @@ class AppCoordinator {
 
 private extension AppCoordinator {
     func makeInitialScreen() -> UIViewController {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .red
+        let vc = CaptureViewController()
         return vc
     }
 }
-
-
-

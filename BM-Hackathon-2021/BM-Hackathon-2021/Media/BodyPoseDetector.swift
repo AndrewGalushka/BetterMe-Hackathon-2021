@@ -15,11 +15,16 @@ class BodyPoseDetector {
                 let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
                 try handler.perform([request])
                 
-                guard let poses = request.results else {
+                guard let humanBodyPoseObservations = request.results,
+                      let firstBodyPoses = humanBodyPoseObservations.first else {
                     return
                 }
                 
-                self.log(poses.description)
+//                let points = try poses.
+//                    .filter { $0.value.confidence > 0.1 }
+//                    .map { CGPoint(x: $0.value.location.x, y: 1 - $0.value.location.y) }
+                
+                self.log(firstBodyPoses.description)
             } catch let error {
                 self.log(error.localizedDescription)
             }
