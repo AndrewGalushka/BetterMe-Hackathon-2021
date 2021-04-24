@@ -47,7 +47,7 @@
                         <viewLayoutGuide key="safeArea" id="uF2-JP-yju"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rpK-Ow-FTZ" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" id="2py-be-QxP"/>
+                            <constraint firstItem="rpK-Ow-FTZ" firstAttribute="top" secondItem="tUv-bb-lmv" secondAttribute="top" id="2py-be-QxP"/>
                             <constraint firstAttribute="bottom" secondItem="Wwq-oB-oms" secondAttribute="bottom" id="5hG-Ts-7Mc"/>
                             <constraint firstItem="dXm-fh-qa9" firstAttribute="width" secondItem="tUv-bb-lmv" secondAttribute="width" multiplier="0.2" id="CfQ-Dd-rvL"/>
                             <constraint firstAttribute="bottom" secondItem="rpK-Ow-FTZ" secondAttribute="bottom" id="Doc-mc-bJZ"/>
