@@ -25,6 +25,7 @@ class CaptureViewController: UIViewController {
     private var props = Props.initial
     
     // MARK: - Public
+    var showPredictions: Bool = false
     var showPoints: Bool = false
     
     // MARK: - Private
@@ -95,6 +96,10 @@ class CaptureViewController: UIViewController {
     }
     
     private func showDebugOutput(for action: ActionPredictor.Action) {
+        guard showPredictions else {
+            return
+        }
+        
         switch action.label {
         case .rightUp_Down:
             let highlightView = UIView(frame: view.bounds)
