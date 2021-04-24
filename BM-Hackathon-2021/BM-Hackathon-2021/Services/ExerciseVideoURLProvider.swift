@@ -9,6 +9,7 @@ import Foundation
 
 class ExerciseVideoURLProvider {
     static let shared = ExerciseVideoURLProvider()
+    private let videoURLs = [FileNames.allCases]
     
     func nextURL() -> URL {
         let url = Bundle.main.url(forResource: FileNames.allCases.randomElement()!.rawValue, withExtension: nil)!

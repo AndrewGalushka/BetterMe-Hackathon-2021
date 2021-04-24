@@ -16,6 +16,8 @@ extension ActionPredictor {
     
     enum LabelType: String, CaseIterable {
         case rightUp_Down
+        case swipe_right_to_left
+        case swipe_up
         case other
         case resting
         case none
@@ -38,6 +40,10 @@ extension ActionPredictor {
                 return "Resting"
             case .none:
                 return "None"
+            case .swipe_right_to_left:
+                return "Swipe right to left"
+            case .swipe_up:
+                return "Bottom to top"
             }
         }
     }

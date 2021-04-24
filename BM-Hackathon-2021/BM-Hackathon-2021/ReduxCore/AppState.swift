@@ -60,21 +60,34 @@ func reduce(_ state: TrainingScreenState, with action: Action) -> TrainingScreen
         }
     case let action as Actions.CaptureViewControllerPresenter.ActionDetected:
         switch action.action.label {
-        case .rightUp_Down where action.action.confidence > 0.8:
+        case .rightUp_Down:
+            guard action.action.confidence > 0.8 else {
+                return state
+            }
+            
             return state | {
                 $0.exerciseVideoState = .minimised
             }
-        case .rightUp_Down:
-            break
-        case .other:
-            break
-        case .resting:
-            break
-        case .none:
-            break
+        case .swipe_up:
+            guard action.action.confidence > 0.8 else {
+                return state
+            }
+            
+            return state | {
+                $0.exerciseVideoState = .maximised
+            }
+        case .swipe_right_to_left:
+            guard action.action.confidence > 0.8 else {
+                return state
+            }
+            
+            return state | {
+                $0.exerciseVideoState = .maximised
+                $0.exerciseVideoURL = ExerciseVideoURLProvider.shared.nextURL()
+            }
+        case .resting, .none, .other:
+            return state
         }
-        
-        return state
     default:
         return state
     }
