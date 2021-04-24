@@ -8,10 +8,45 @@
 import Vision
 import CoreML
 
+extension ActionPredictor {
+    struct Action {
+        let label: LabelType
+        let confidence: Double
+    }
+    
+    enum LabelType: String, CaseIterable {
+        case rightUp_Down
+        case other
+        case resting
+        case none
+        
+        init?(name: String) {
+            guard let action = LabelType.allCases.first(where: {
+                $0.name == name
+            }) else { return nil }
+            
+            self = action
+        }
+        
+        var name: String {
+            switch self {
+            case .rightUp_Down:
+                return "Up right to left"
+            case .other:
+                return "Other"
+            case .resting:
+                return "Resting"
+            case .none:
+                return "None"
+            }
+        }
+    }
+}
+
 class ActionPredictor {
     // MARK: - Public
     
-    typealias Output = String
+    typealias Output = ActionPredictor.Action
     var output: ((Output) -> Void)?
     
     // MARK: - Private
@@ -71,7 +106,20 @@ class ActionPredictor {
         let input = MLMultiArray(concatenating: poseMultiArray, axis: 0, dataType: .float)
         let predictions = try classifier.prediction(poses: input)
         
-        return predictions.labelProbabilities.sorted(by: { (a,b) in a.key > b.key }).map { "\($0.key): \(($0.value * 100).rounded(toPlaces: 2))%" }.joined(separator: "\n")
+        guard let first = predictions.labelProbabilities.sorted(by: { (a,b) in a.value > b.value }).first,
+              first.value > 0.2 else {
+            return .init(label: .none, confidence: 100)
+        }
+        
+        return convertLabelProbabilityToAction(name: first.key, probability: first.value)
+    }
+     
+    private func convertLabelProbabilityToAction(name: String, probability: Double) -> ActionPredictor.Action {
+        guard let actionType = ActionPredictor.LabelType(name: name) else {
+            return ActionPredictor.Action(label: .none, confidence: 1)
+        }
+        
+        return ActionPredictor.Action(label: actionType, confidence: probability)
     }
 }
 

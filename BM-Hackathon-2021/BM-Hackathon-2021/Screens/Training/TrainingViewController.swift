@@ -31,7 +31,7 @@ final class TrainingViewController: UIViewController {
     @IBOutlet var exerciseContainerMaxRightConstraint: NSLayoutConstraint!
     @IBOutlet var exerciseContainerMaxTopConstraint: NSLayoutConstraint!
     
-    private lazy var cameraViewController = CaptureViewFactory.makeDefault
+    private lazy var cameraViewController = CaptureViewFactory().makeDefault()
     private lazy var exercisePlayerViewController = ExerciseVideoPlayerScreenFactory().makeDefault()
     
     deinit {

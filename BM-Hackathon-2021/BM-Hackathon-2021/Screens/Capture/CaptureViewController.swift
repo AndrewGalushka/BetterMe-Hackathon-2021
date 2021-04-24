@@ -10,6 +10,20 @@ import AVFoundation
 import Vision
 
 class CaptureViewController: UIViewController {
+    
+    // MARK: - Props
+    
+    struct Props {
+        let onDetectedAction: CommandWith<ActionPredictor.Action>
+        let onDestroy: Command
+        
+        static let initial = Props(
+            onDetectedAction: .nop,
+            onDestroy: .nop
+        )
+    }
+    private var props = Props.initial
+    
     // MARK: - Public
     var showPoints: Bool = false
     
@@ -54,19 +68,50 @@ class CaptureViewController: UIViewController {
         }
         
         actionPredictor.configure()
-        actionPredictor.output = { [weak self] results in
-            self?.debugView.display(text: results)
+        actionPredictor.output = { [weak self] result in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.props.onDetectedAction.perform(with: result)
+            strongSelf.showDebugOutput(for: result)
         }
-        
+    }
+    
+    deinit {
+        props.onDestroy.perform()
+    }
+    
+    func render(props: Props) {
+        self.props = props
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         captureSession.start()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         captureSession.stop()
+    }
+    
+    private func showDebugOutput(for action: ActionPredictor.Action) {
+        switch action.label {
+        case .rightUp_Down:
+            let highlightView = UIView(frame: view.bounds)
+            highlightView.backgroundColor = nil
+            self.view.addSubview(highlightView)
+            
+            UIView.animate(withDuration: 0.25) {
+                highlightView.backgroundColor = UIColor.blue.withAlphaComponent(0.7)
+            } completion: { _ in
+                highlightView.removeFromSuperview()
+            }
+
+        default:
+            break
+        }
+        
+        debugView.display(text: "\(action.label)")
     }
     
     private func passDetectedForDebug(_ detected: BodyDetector.OutputData) {

@@ -16,6 +16,7 @@ class ExerciseVideoURLProvider {
     }
     
     private enum FileNames: String, CaseIterable {
-        case jumpingJacks = "jumping_jacks.m4v"
+        case jumpingJacks = "jumping_jacks.mp4"
+        case dancingRumba = "dancing_rumba.mp4"
     }
 }
