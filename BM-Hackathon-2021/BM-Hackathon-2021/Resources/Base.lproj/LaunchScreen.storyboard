@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_signature_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dji-vG-45m">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_signature_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="dji-vG-45m">
                                 <rect key="frame" x="122.5" y="363.5" width="169" height="169"/>
                                 <color key="tintColor" red="1" green="0.65060113399999997" blue="0.17135983420000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_signature_icon" width="129" height="169"/>
+        <image name="app_signature_symbol" width="129" height="169"/>
     </resources>
 </document>
