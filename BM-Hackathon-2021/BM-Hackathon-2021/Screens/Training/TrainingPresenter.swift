@@ -25,7 +25,7 @@ struct TrainingPresenter {
         render.perform(
             with: Props(
                 exerciseVideoState: state.trainingScreen.exerciseVideoState,
-                onExerciseVideoTap: dispatch.bind(to: Actions.TrainingPresenter.ExerciseVideoTap()),
+                onExerciseVideoTap: dispatch.bind(to: Actions.TrainingPresenter.ExerciseVideoTap(), id: "onExerciseVideoTap"),
                 onDestroy: endObserving
             )
         )

@@ -30,6 +30,7 @@ final class TrainingViewController: UIViewController {
     @IBOutlet var exerciseContainerMinHeightConstraint: NSLayoutConstraint!
     @IBOutlet var exerciseContainerMaxRightConstraint: NSLayoutConstraint!
     @IBOutlet var exerciseContainerMaxTopConstraint: NSLayoutConstraint!
+    @IBOutlet var shadingBackgroundView: UIView!
     
     private lazy var cameraViewController = CaptureViewFactory().makeDefault()
     private lazy var exercisePlayerViewController = ExerciseVideoPlayerScreenFactory().makeDefault()
@@ -92,6 +93,13 @@ final class TrainingViewController: UIViewController {
         
         UIView.animate(withDuration: animated ? 1 : 0) {
             self.view.layoutIfNeeded()
+            
+            switch self.props.exerciseVideoState {
+            case .minimised:
+                self.shadingBackgroundView.alpha = 0
+            case .maximised:
+                self.shadingBackgroundView.alpha = 1.0
+            }
         }
     }
     
