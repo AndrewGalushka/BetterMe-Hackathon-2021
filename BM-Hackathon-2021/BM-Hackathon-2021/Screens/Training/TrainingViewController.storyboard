@@ -29,7 +29,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rpK-Ow-FTZ" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" id="2py-be-QxP"/>
-                            <constraint firstItem="dXm-fh-qa9" firstAttribute="width" secondItem="rpK-Ow-FTZ" secondAttribute="width" multiplier="0.2" id="CfQ-Dd-rvL"/>
+                            <constraint firstItem="dXm-fh-qa9" firstAttribute="width" secondItem="tUv-bb-lmv" secondAttribute="width" multiplier="0.2" id="CfQ-Dd-rvL"/>
                             <constraint firstAttribute="bottom" secondItem="rpK-Ow-FTZ" secondAttribute="bottom" id="Doc-mc-bJZ"/>
                             <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="rpK-Ow-FTZ" secondAttribute="trailing" id="bDE-GK-BL1"/>
                             <constraint firstItem="rpK-Ow-FTZ" firstAttribute="leading" secondItem="uF2-JP-yju" secondAttribute="leading" id="d7B-w5-Ppn"/>
@@ -39,7 +39,7 @@
                             <constraint firstItem="uF2-JP-yju" firstAttribute="bottom" secondItem="dXm-fh-qa9" secondAttribute="bottom" constant="20" id="mgh-wu-R19">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
-                            <constraint firstItem="dXm-fh-qa9" firstAttribute="height" secondItem="rpK-Ow-FTZ" secondAttribute="height" multiplier="0.2" id="mxD-U0-vJ6"/>
+                            <constraint firstItem="dXm-fh-qa9" firstAttribute="height" secondItem="tUv-bb-lmv" secondAttribute="height" multiplier="0.2" id="mxD-U0-vJ6"/>
                             <constraint firstItem="dXm-fh-qa9" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" constant="20" id="q57-hX-jYp">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>

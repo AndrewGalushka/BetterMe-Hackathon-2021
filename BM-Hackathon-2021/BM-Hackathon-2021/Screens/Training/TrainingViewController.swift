@@ -96,7 +96,7 @@ final class TrainingViewController: UIViewController {
     }
     
     func setup() {
-        cameraViewController.attach(to: self, in: cameraContainer)
+        cameraViewController.attach(to: self, in: cameraContainer, safeArea: false)
         cameraViewController.view.isUserInteractionEnabled = false
         
         exerciseVideoContainer.addGestureRecognizer(
@@ -105,7 +105,7 @@ final class TrainingViewController: UIViewController {
         
         exercisePlayerViewController.attach(to: self, in: exerciseVideoContainer)
         exerciseVideoContainer.clipsToBounds = true
-        exerciseVideoContainer.layer.cornerRadius = 18
+        exerciseVideoContainer.layer.cornerRadius = 32
         updateExerciseContainer(force: true, animated: false)
     }
     

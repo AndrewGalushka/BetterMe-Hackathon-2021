@@ -25,7 +25,7 @@ class CaptureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         captureSession.configure()
-        capturePreview.embed(to: view, safeArea: true)
+        capturePreview.embed(to: view, safeArea: false)
         captureSession.bind(to: capturePreview.previewLayer)
         pointsDisplayView.embed(to: capturePreview)
         debugView.embed(to: view, safeArea: true)
