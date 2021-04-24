@@ -25,6 +25,8 @@ struct CaptureViewControllerPresenter {
     func present(state: AppState) {
         render.perform(
             with: Props(
+                showPoints: state.settings.showPoints,
+                showPredictions: state.settings.showPredictions,
                 onDetectedAction: CommandWith {
                     dispatch.perform(with: Actions.CaptureViewControllerPresenter.ActionDetected(action: $0))
                 },

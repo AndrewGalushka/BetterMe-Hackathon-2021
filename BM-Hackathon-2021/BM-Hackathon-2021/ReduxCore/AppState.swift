@@ -9,23 +9,28 @@ import Foundation
 
 struct AppState: Equatable {
     private(set) var trainingScreen: TrainingScreenState
+    private(set) var settings: SettingState
     
     static var initial: AppState {
-        AppState(trainingScreen: .initial)
+        AppState(
+            trainingScreen: .initial,
+            settings: .initial
+        )
     }
 }
 
 func reduce(_ state: AppState, with action: Action) -> AppState {
     AppState(
-        trainingScreen: reduce(state.trainingScreen, with: action)
+        trainingScreen: reduce(state.trainingScreen, with: action),
+        settings: reduce(state.settings, with: action)
     )
 }
 
 // MARK: - TrainingScreenState
 
 struct TrainingScreenState: Equatable {
-    var exerciseVideoState: ExerciseVideoState
-    let exerciseVideoURL: URL
+    fileprivate(set) var exerciseVideoState: ExerciseVideoState
+    fileprivate(set) var exerciseVideoURL: URL
     
     static var initial: TrainingScreenState {
         return TrainingScreenState(
@@ -70,6 +75,32 @@ func reduce(_ state: TrainingScreenState, with action: Action) -> TrainingScreen
         }
         
         return state
+    default:
+        return state
+    }
+}
+
+// MARK: - Setting
+
+struct SettingState: Equatable {
+    fileprivate(set) var showPoints: Bool
+    fileprivate(set) var showPredictions: Bool
+    
+    static var initial: SettingState {
+        SettingState(showPoints: false, showPredictions: false)
+    }
+}
+
+func reduce(_ state: SettingState, with action: Action) -> SettingState {
+    switch action {
+    case let action as Actions.SettingsPresenter.ShowPointsChange:
+        return state | {
+            $0.showPoints = action.isOn
+        }
+    case let action as Actions.SettingsPresenter.ShowPredictionsChange:
+        return state | {
+            $0.showPredictions = action.isOn
+        }
     default:
         return state
     }

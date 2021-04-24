@@ -113,6 +113,12 @@ final class TrainingViewController: UIViewController {
     private func onExerciseVideoTap() {
         props.onExerciseVideoTap.perform()
     }
+    
+    @IBAction func onGearTap(_ sender: Any) {
+        present(SettingsScreenFactory().makeDefault(),
+                animated: true,
+                completion: nil)
+    }
 }
 
 // MARK: - Private methods

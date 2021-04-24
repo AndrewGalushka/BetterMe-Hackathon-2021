@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3H5-UM-BBB">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="xZ8-Tw-aiO">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="3H5-UM-BBB" customClass="SettingsViewController" customModule="BM_Hackathon_2021" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tUv-bb-lmv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4g-ZO-iJZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ktw-VT-siy">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="PXP-zi-gd9"/>
+                                        </constraints>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="onDoneTap:" destination="3H5-UM-BBB" eventType="touchUpInside" id="d9F-Ng-LF7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ktw-VT-siy" firstAttribute="leading" secondItem="T4g-ZO-iJZ" secondAttribute="leading" id="DLa-1E-hcb"/>
+                                    <constraint firstAttribute="bottom" secondItem="ktw-VT-siy" secondAttribute="bottom" id="HnW-4l-z8Z"/>
+                                    <constraint firstAttribute="height" constant="44" id="gJy-bb-dU4"/>
+                                    <constraint firstItem="ktw-VT-siy" firstAttribute="top" secondItem="T4g-ZO-iJZ" secondAttribute="top" id="o8z-Je-Ep8"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-jC-25W">
+                                <rect key="frame" x="16" y="49" width="343" height="82"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="25a-c9-oH7">
+                                        <rect key="frame" x="0.0" y="0.0" width="152.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-99-Dyv">
+                                                <rect key="frame" x="0.0" y="5.5" width="93.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oPc-Va-grm">
+                                                <rect key="frame" x="103.5" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="onShowPointsFlagChanged:" destination="3H5-UM-BBB" eventType="valueChanged" id="xl0-h6-nOJ"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="opq-I9-h3S">
+                                        <rect key="frame" x="0.0" y="51" width="191" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Predictions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wh-HY-GIP">
+                                                <rect key="frame" x="0.0" y="5.5" width="132" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1br-r8-65g">
+                                                <rect key="frame" x="142" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="onShowPredictionsFlagChanged:" destination="3H5-UM-BBB" eventType="valueChanged" id="woe-6Z-Kb0"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uF2-JP-yju"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="T4g-ZO-iJZ" firstAttribute="leading" secondItem="uF2-JP-yju" secondAttribute="leading" id="8gC-bM-HCN"/>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WfA-jC-25W" secondAttribute="bottom" id="Cj9-mf-adG"/>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="WfA-jC-25W" secondAttribute="trailing" constant="16" id="X4J-VZ-fLF"/>
+                            <constraint firstItem="WfA-jC-25W" firstAttribute="top" secondItem="T4g-ZO-iJZ" secondAttribute="bottom" constant="5" id="XPf-bj-Zyr"/>
+                            <constraint firstItem="uF2-JP-yju" firstAttribute="trailing" secondItem="T4g-ZO-iJZ" secondAttribute="trailing" id="l6y-bt-UYN"/>
+                            <constraint firstItem="WfA-jC-25W" firstAttribute="leading" secondItem="uF2-JP-yju" secondAttribute="leading" constant="16" id="uc8-pE-RmR"/>
+                            <constraint firstItem="T4g-ZO-iJZ" firstAttribute="top" secondItem="uF2-JP-yju" secondAttribute="top" id="xAe-Vk-eqr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="showPointsSwitch" destination="oPc-Va-grm" id="xwG-7i-FGL"/>
+                        <outlet property="showPredictionsSwitch" destination="1br-r8-65g" id="V5P-bq-Sjr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7wy-kX-yoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-172" y="61.619190404797607"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
